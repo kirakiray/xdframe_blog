@@ -7,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>test page</title>
     <link rel="stylesheet" href="css/index.css">
-    <script src="js/xdframe.min.js"></script>
+    <script src="js/xdframe.js"></script>
     <script>
         drill = async (drill) => {
             drill.config({
                 baseUrl: "js/"
             });
             await load("comps/ki-loading");
-            await load("comps/ki-nav -pack");
+            await load("comps/ki-nav -pack", "comps/ki-ul -pack");
         }
     </script>
 </head>
@@ -23,12 +23,27 @@
     <ki-nav>
         <img src="img/logo_white.png" alt="logo" slot="logo">
         <a href="/index.html">XDFRAME</a>
-        <a href="xhear/index.html">XHEAR</a>
-        <a href="drilljs/index.html">DRILLJS</a>
-        <a href="stanz/index.html">STANZ</a>
+        <a href="/xhear/index.html">XHEAR</a>
+        <a href="/drilljs/index.html">DRILLJS</a>
+        <a href="/stanz/index.html">STANZ</a>
     </ki-nav>
     <div class="main">
-        <ki-loading></ki-loading>
+        <div class="aslide">
+            <ki-ul>
+                <h1>文档</h1>
+                <header>标题</header>
+                <a>Apple</a>
+                <a>Boy</a>
+                <a class="kiul_active">Cat</a>
+                <a>Dog</a>
+                <a>Egg</a>
+                <a>Fuxk</a>
+            </ki-ul>
+        </div>
+        <div class="article">
+            asdasd
+        </div>
+        <!-- <ki-loading></ki-loading> -->
     </div>
 </body>
 
