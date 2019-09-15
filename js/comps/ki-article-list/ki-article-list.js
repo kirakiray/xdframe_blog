@@ -1,7 +1,7 @@
 Component({
-    tag: "ki-ul",
+    tag: "ki-article-list",
     link: false,
-    hostlink: "./kiul-host.css",
+    useComps: ["../ki-ul -pack"],
     inited() {
         // debugger
     }
