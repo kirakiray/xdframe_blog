@@ -2,3 +2,7 @@
     display: block;
     margin-left: 10px;
 }
+
+ki-ul a {
+    cursor: pointer;
+}
