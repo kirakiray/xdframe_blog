@@ -6,23 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>test page</title>
-    <link rel="stylesheet" href="css/index.css">
-    <script src="js/xdframe.js"></script>
-    <script>
-        drill = async (drill) => {
-            drill.config({
-                baseUrl: "js/"
-            });
-            await load("comps/ki-loading");
-            await load("comps/ki-nav -pack", "comps/ki-ul -pack");
-        }
-    </script>
+    <script src="js/xdframe.js" async></script>
+    <script src="js/main.js" async></script>
 </head>
 
 <body>
     <ki-nav>
         <img src="img/logo_white.png" alt="logo" slot="logo">
-        <a href="/index.html">XDFRAME</a>
+        <a href="index.html">XDFRAME</a>
         <a href="/xhear/index.html">XHEAR</a>
         <a href="/drilljs/index.html">DRILLJS</a>
         <a href="/stanz/index.html">STANZ</a>
@@ -40,7 +31,7 @@
                 <a>Fuxk</a>
             </ki-ul>
         </div>
-        <div class="article">
+        <div class="article" id="main_article">
             <article class="ki-article">
                 <h1>一级标题</h1>
                 <p class="ki-article-meta">Written by <a href="#">Super User</a> on 12 April 2012. Posted in <a href="#">Blog</a></p>
@@ -83,19 +74,8 @@
             </article>
         </div>
         <div class="article_aslide">
-            <ki-ul>
-                <a>Apple</a>
-                <a>Boy</a>
-                <a class="kiul_active">Cat</a>
-                <a>Dog</a>
-                <a>Egg</a>
-                <a>Fuxk</a>
-                <footer>
-
-                </footer>
-            </ki-ul>
+            <ki-article-list for="#main_article"></ki-article-list>
         </div>
-        <!-- <ki-loading></ki-loading> -->
     </div>
 </body>
 
