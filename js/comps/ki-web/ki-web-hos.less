@@ -1,6 +1,14 @@
 ki-web {
     >article {
-        height: 100%;
-        overflow-y: auto;
+        box-sizing: border-box;
+        padding-top: 50px;
+        // height: 100%;
+        // overflow-y: auto;
+
+        &:after {
+            display: block;
+            height: 50px;
+            content: "";
+        }
     }
 }

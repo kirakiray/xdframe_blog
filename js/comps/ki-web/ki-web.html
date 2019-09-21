@@ -19,10 +19,13 @@
             <a>Fuxk</a>
         </ki-ul>
     </div>
-    <div class="article">
-        <slot></slot>
+    <div class="article" xv-tar="articleContainer">
+        <div class="article_inner">
+            <slot></slot>
+        </div>
     </div>
-    <div class="article_aslide">
-        <ki-article-list for="ki-web>article"></ki-article-list>
-    </div>
+</div>
+<div class="article_aslide">
+        <!-- <ki-article-list xv-tar="articleList" for="article"></ki-article-list> -->
+        <ki-article-list xv-tar="articleList"></ki-article-list>
 </div>

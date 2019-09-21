@@ -1,10 +1,11 @@
 Component({
     tag: "ki-article-list",
-    useComps: ["../ki-ul -pack"],
+    use: ["../ki-ul -pack"],
     data: {
-        _oldTar: "",
+        _scrollEle: "",
         _oldScrollBinding: "",
-        _scrollTimer: ""
+        _scrollTimer: "",
+        for: ""
     },
     proto: {
         // 更新列表数据
@@ -12,7 +13,7 @@ Component({
             let target = this._target.ele;
 
             // 判断当前的滚动值
-            let { clientHeight, scrollTop, scrollHeight } = target;
+            let { clientHeight, scrollTop, scrollHeight } = this._scrollEle.ele;
 
             // 获取每个title距离顶部的高度
             let titles = this._target.queAll('h1,h2,h3,h4,h5,h6');
@@ -51,8 +52,27 @@ Component({
     },
     watch: {
         for(e, val) {
-            // 获取元素
-            let targetEle = $(val);
+            if (!val) {
+                return;
+            }
+
+            let targetEle, scrollEle;
+
+            let valType = typeof val;
+
+            switch (valType) {
+                case "string":
+                    // 获取数据的容器
+                    targetEle = $(val);
+
+                    // 滚动容器
+                    scrollEle = targetEle;
+                    break;
+                case "object":
+                    targetEle = $(val.targetEle);
+                    scrollEle = $(val.scrollEle);
+                    break;
+            }
 
             // 获取所有标题
             let titles = targetEle.queAll('h1,h2,h3,h4,h5,h6');
@@ -67,20 +87,20 @@ Component({
             // 挂载_target
             this._target = targetEle;
 
-            // 刷新装填
-            this.refreshActive();
-
             let bindFun;
-            targetEle.on("scroll", bindFun = e => {
+            scrollEle.on("scroll", bindFun = e => {
                 this.reduceRefreshActive();
             });
 
-            if (this._oldTar) {
-                this._oldTar.off("scroll", this._oldScrollBinding);
+            if (this._scrollEle) {
+                this._scrollEle.off("scroll", this._oldScrollBinding);
             }
 
-            this._oldTar = targetEle;
+            this._scrollEle = scrollEle;
             this._oldScrollBinding = bindFun;
+
+            // 刷新装填
+            this.refreshActive();
         }
     },
     inited() {
@@ -92,7 +112,9 @@ Component({
                 behavior: "smooth",
                 block: "center"
             });
-
         });
+    },
+    attached() {
+        this.reduceRefreshActive();
     }
 });
