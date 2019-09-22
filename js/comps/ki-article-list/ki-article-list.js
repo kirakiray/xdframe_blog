@@ -10,7 +10,9 @@ Component({
     proto: {
         // 更新列表数据
         refreshActive() {
-            let target = this._target.ele;
+            if (!this.for) {
+                return;
+            }
 
             // 判断当前的滚动值
             let { clientHeight, scrollTop, scrollHeight } = this._scrollEle.ele;
@@ -37,7 +39,7 @@ Component({
 
             this.$kiul[tarIndex].class.add("kiul_active");
 
-            console.log(goodTop, eleTops);
+            // console.log(goodTop, eleTops);
         },
         reduceRefreshActive() {
             if (this._scrollTimer) {
