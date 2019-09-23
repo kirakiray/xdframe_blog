@@ -7,3 +7,6 @@ ki-web > article:after {
   height: 50px;
   content: "";
 }
+.dataNav {
+  display: none;
+}
