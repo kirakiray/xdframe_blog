@@ -1,5 +1,6 @@
 Component({
     tag: "ki-web",
+    temp: true,
     hostlink: "./ki-web-hos.css",
     use: ["../ki-nav -pack", "../ki-ul -pack", "../ki-loading", `${location.origin}/css/ki-article.css`],
     data: {
@@ -24,6 +25,16 @@ Component({
             } else {
                 this.$leftNav.display = "";
             }
+        }
+    },
+    async inited() {
+        // 请求首页的nav数据
+        let indexTemp = await fetch(`/cn/index.html`);
+        indexTemp = await indexTemp.text();
+        let navArr = /\<nav>[\w\W]+<\/nav>/.exec(indexTemp);
+        if (navArr) {
+            let navEle = $(navArr[0]);
+            this.$topNavContent.html = navEle.html;
         }
     },
     async onload({ load }) {

@@ -1,5 +1,6 @@
 Component({
     tag: "ki-article-list",
+    temp: true,
     use: ["../ki-ul -pack"],
     data: {
         _scrollEle: "",

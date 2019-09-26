@@ -43,3 +43,6 @@ ki-nav img[slot="logo"] {
   width: auto;
   height: 20px;
 }
+ki-nav .ki_nav_content {
+  display: flex;
+}
