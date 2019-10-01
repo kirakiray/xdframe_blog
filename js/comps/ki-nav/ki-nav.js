@@ -20,6 +20,10 @@ Component({
             ele.data.href = ele.attr("href");
         });
 
+        this.watch(e => {
+            this.refreshActive();
+        });
+
         // 刷新激活按钮
         this.refreshActive();
     },

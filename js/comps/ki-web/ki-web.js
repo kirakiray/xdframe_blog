@@ -34,6 +34,13 @@ Component({
         let navArr = /\<nav>[\w\W]+<\/nav>/.exec(indexTemp);
         if (navArr) {
             let navEle = $(navArr[0]);
+
+            // 修正地址的根路径
+            navEle.queAll("a").forEach(aEle => {
+                let href = aEle.attr("href");
+                aEle.attr("href", `/cn/${href}`);
+            });
+
             this.$topNavContent.html = navEle.html;
         }
     },
