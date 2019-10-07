@@ -5,7 +5,8 @@ Component({
     use: ["../ki-nav -pack", "../ki-ul -pack", "../ki-loading", `${location.origin}/css/ki-article.css`],
     data: {
         leftNav: "show",
-        articleAslide: "show"
+        articleAslide: "show",
+        lang: "cn"
     },
     watch: {
         articleAslide(e, val) {
@@ -31,7 +32,7 @@ Component({
         // 加载nav数据
         async loadTopNav() {
             // 请求首页的nav数据
-            let indexTemp = await fetch(`/cn/index.html`);
+            let indexTemp = await fetch(`/${this.lang}/index.html`);
             indexTemp = await indexTemp.text();
             let navArr = /\<nav class="top_nav">[\w\W]+<\/nav>/.exec(indexTemp);
             if (navArr) {
@@ -40,14 +41,14 @@ Component({
                 // 修正地址的根路径
                 navEle.queAll("a").forEach(aEle => {
                     let href = aEle.attr("href");
-                    aEle.attr("href", `/cn/${href}`);
+                    aEle.attr("href", `/${this.lang}/${href}`);
                 });
 
                 this.$topNavContent.html = navEle.html;
             }
         },
-        async loadLeftNav() {
-            let leftNavTemp = await fetch(`/cn/xdframe/index.html`);
+        async loadLeftNav(opt = {}) {
+            let leftNavTemp = await fetch(`/${this.lang}/${opt.libName}/index.html`);
             leftNavTemp = await leftNavTemp.text();
             let navArr = /\<nav class="left_nav">[\w\W]+<\/nav>/.exec(leftNavTemp);
             if (navArr) {
@@ -56,15 +57,14 @@ Component({
             }
 
             // 获取连接
-            let pathArr = /.+\/(.+)/.exec(document.location.href);
+            let pathArr = /.+\/(.*)/.exec(document.location.href);
+            let pName = pathArr[1];
+            (!pName) && (pName = "index.html")
 
             // 添加激活状态
-            if (pathArr) {
-                let tarEle = this.$leftNav.que(`a[href$="${pathArr[1]}"]`);
-                if (tarEle) {
-                    tarEle.class.add("kiul_active");
-                    // debugger
-                }
+            let tarEle = this.$leftNav.que(`a[href$="${pName}"]`);
+            if (tarEle) {
+                tarEle.class.add("kiul_active");
             }
         }
     },

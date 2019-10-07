@@ -6,11 +6,16 @@ Component({
         refreshActive() {
             let { pathname } = document.location;
 
-            // 超找拥有这个href的标签
-            let target = this.que(`[href="${pathname}"]`);
-            if (target) {
-                target.class.add("ki_nav_active");
-                target.removeAttr("href");
+            let reArr = /(.+)\/.*/.exec(pathname);
+            if (reArr) {
+                let tarExec = reArr[1];
+
+                // 超找拥有这个href的标签
+                let target = this.que(`[href^="${tarExec}"]`);
+                if (target) {
+                    target.class.add("ki_nav_active");
+                    target.removeAttr("href");
+                }
             }
         }
     },

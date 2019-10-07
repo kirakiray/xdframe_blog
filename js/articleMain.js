@@ -24,7 +24,13 @@ drill = async (drill) => {
     // 加载初始数据并设置顶顶部标签
     await kiweb.loadTopNav();
 
-    await kiweb.loadLeftNav();
+    let libName = /.+\/(.+?)\/.*/.exec(location.pathname);
+    libName && (libName = libName[1]);
+    if (libName) {
+        await kiweb.loadLeftNav({
+            libName
+        });
+    }
 
     //  隐藏Loading
     start_loading.display = "none";
