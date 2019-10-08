@@ -41,10 +41,17 @@ Component({
                 // 修正地址的根路径
                 navEle.queAll("a").forEach(aEle => {
                     let href = aEle.attr("href");
-                    aEle.attr("href", `/${this.lang}/${href}`);
+                    href = `/${this.lang}/${href}`;
+
+                    // 设置href属性
+                    aEle.attr("href", href);
+                    aEle.attr("backHref", href);
                 });
 
                 this.$topNavContent.html = navEle.html;
+
+                // 刷新 
+                this.$topNavContent.parent.refreshActive()
             }
         },
         async loadLeftNav(opt = {}) {

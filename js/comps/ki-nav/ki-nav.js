@@ -10,6 +10,12 @@ Component({
             if (reArr) {
                 let tarExec = reArr[1];
 
+
+                // 还原所有href
+                this.queAll("a").forEach(aEle => {
+                    aEle.attr("href", aEle.attr("backHref"));
+                });
+
                 // 超找拥有这个href的标签
                 let target = this.que(`[href^="${tarExec}"]`);
                 if (target) {
@@ -24,13 +30,6 @@ Component({
         this.queAll("a").forEach(ele => {
             ele.data.href = ele.attr("href");
         });
-
-        this.watch(e => {
-            this.refreshActive();
-        });
-
-        // 刷新激活按钮
-        this.refreshActive();
     },
     shadowLink: true
 });
