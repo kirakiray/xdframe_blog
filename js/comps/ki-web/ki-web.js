@@ -1,6 +1,7 @@
 Component({
     tag: "ki-web",
     temp: true,
+    link: true,
     hostlink: "./ki-web-hos.css",
     use: ["../ki-nav -pack", "../ki-ul -pack", "../ki-loading", `${location.origin}/css/ki-article.css`],
     data: {

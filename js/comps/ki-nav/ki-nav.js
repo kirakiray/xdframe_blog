@@ -1,6 +1,7 @@
 Component({
     tag: "ki-nav",
     temp: true,
+    link: true,
     hostlink: "./ki-nav-host.css",
     proto: {
         refreshActive() {
