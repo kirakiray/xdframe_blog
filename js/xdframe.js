@@ -3039,6 +3039,12 @@
                     let {
                         name
                     } = e;
+
+                    // 下划线的属性不能直接定义
+                    if (/^_.*/.test(name)) {
+                        return;
+                    }
+
                     name = attrToProp(name);
                     if (!/^xv\-/.test(name) && !/^:/.test(name) && canSetKey.has(name)) {
                         rData[name] = e.value;
@@ -4132,6 +4138,8 @@
             main
         } = base;
 
+        const isFunction = val => getType(val).includes("function");
+
         // 设置控件类型
         processors.set("component", async packData => {
             let defaults = {
@@ -4151,6 +4159,8 @@
 
             // load方法
             const load = (...args) => main.load(main.toUrlObjs(args, packData.dir));
+
+            debugger
 
             // 合并默认参数
             Object.assign(defaults, base.tempM.d);
